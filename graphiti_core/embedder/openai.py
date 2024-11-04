@@ -26,8 +26,8 @@ DEFAULT_EMBEDDING_MODEL = 'text-embedding-3-small'
 
 class OpenAIEmbedderConfig(EmbedderConfig):
     embedding_model: EmbeddingModel | str = DEFAULT_EMBEDDING_MODEL
-    api_key: str | None = None
-    base_url: str | None = None
+    api_key: str | None = '123'
+    base_url: str | None = 'http://172.24.191.22:4000'
 
 
 class OpenAIEmbedder(EmbedderClient):
@@ -45,6 +45,6 @@ class OpenAIEmbedder(EmbedderClient):
         self, input_data: str | List[str] | Iterable[int] | Iterable[Iterable[int]]
     ) -> list[float]:
         result = await self.client.embeddings.create(
-            input=input_data, model=self.config.embedding_model
+            input=input_data, model=self.config.embedding_model, encoding_format=None
         )
         return result.data[0].embedding[: self.config.embedding_dim]

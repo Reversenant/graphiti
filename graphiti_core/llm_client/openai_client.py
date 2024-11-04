@@ -91,7 +91,12 @@ class OpenAIClient(LLMClient):
                 response_format={'type': 'json_object'},
             )
             result = response.choices[0].message.content or ''
-            return json.loads(result)
+            #print(response.choices[0].message.content)
+            #print(type(result))
+            #result = '{'+result.split('{', 1)[1]
+            #result = result.rsplit('}', 1)[0]+'}'
+            print(result)
+            return json.loads('{'+result.split('{', 1)[1])
         except openai.RateLimitError as e:
             raise RateLimitError from e
         except Exception as e:

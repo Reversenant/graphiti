@@ -29,9 +29,9 @@ class LLMConfig:
 
     def __init__(
         self,
-        api_key: str | None = None,
-        model: str | None = None,
-        base_url: str | None = None,
+        api_key: str | None = "sk-1234",
+        model: str | None = "ollama/llama3.2",
+        base_url: str | None = "http://localhost:4000",
         temperature: float = DEFAULT_TEMPERATURE,
         max_tokens: int = DEFAULT_MAX_TOKENS,
     ):
